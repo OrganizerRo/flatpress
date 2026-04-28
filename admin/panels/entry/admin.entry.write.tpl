@@ -1,7 +1,3 @@
-<h2>{$panelstrings.head}</h2>
-
-	{include file="shared:errorlist.tpl"}
-
 	{entry_block}
 	<div id="admin-post-preview">
 	{if isset($preview)}
@@ -12,6 +8,16 @@
 	</div>
 
 		{html_form}
+			<h2>{$panelstrings.head}</h2>
+
+			{include file="shared:errorlist.tpl"}
+
+			<div class="buttonbar">
+			{html_submit name="save" value=$panelstrings.submit}
+			{html_submit name="savecontinue" value=$panelstrings.savecontinue}
+			{html_submit name="preview" value=$panelstrings.preview}
+			</div>
+
 			{if !isset($post)}
 				{assign var=post value=""}
 			{/if}
@@ -46,6 +52,11 @@
 						<textarea name="content" id="content" class="{$class}" 
 							rows="20" cols="74">{$content|default:{$smarty.request.content|default:''}|htmlspecialchars}</textarea><br>
 					</p>
+					<div class="buttonbar">
+					{html_submit name="save" value=$panelstrings.submit}
+					{html_submit name="savecontinue" value=$panelstrings.savecontinue}
+					{html_submit name="preview" value=$panelstrings.preview}
+					</div>
 					{* here will go a plugin hook *}
 					<!-- BOF SEO-Metataginfo- Plugin -->{action hook=simple_metatag_info}<!-- EOF SEO-Metataginfo- Plugin -->
 					<!-- BOF Tag- Plugin -->{action hook=simple_tag_form}<!-- EOF Tag- Plugin -->
